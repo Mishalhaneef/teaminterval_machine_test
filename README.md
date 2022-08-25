@@ -1,18 +1,32 @@
 # teaminterval machine test
 
--this is a flutter project for [teteaminterval.com](https://www.teaminterval.in/)'s machine test
+ this is a flutter project for [teteaminterval.com](https://www.teaminterval.in/)'s machine test
+
+## Task 
+- Login Screen
+- Home Screen
+- Listing Screen
+- Search option
 
 
 
-## Getting Started
+## What's I Done
 
-This project is a starting point for a Flutter application.
+- Login Screen
+login screen is finished as per the task. Created a user login screen. user can login with username and password. when clicking login button if username and password are same it'll navigate to the home screen, else it'll show an error
+implemented password hide (obscureText) option
+will show a snackbar to show the user if anything wrong happened
 
-A few resources to get you started if this is your first Flutter project:
+- Home Screen
+Integrated the API, and fetches the data that needed to list in the application. all working well.
+used injectable and get it to make it smooth and scalable
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Search Option
+didn't have much time to finish, but finished the coding. only have to implement that to the UI
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Run The Project
+
+Go to terminal and run the command
+> code .
+> flutter emulators --launch < emulator id >
+> flutter run
