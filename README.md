@@ -1,6 +1,8 @@
-# teaminterval_test
+# teaminterval machine test
 
-A new Flutter project.
+-this is a flutter project for [teteaminterval.com](https://www.teaminterval.in/)'s machine test
+
+
 
 ## Getting Started
 
