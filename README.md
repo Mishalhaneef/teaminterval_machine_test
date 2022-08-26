@@ -8,6 +8,18 @@
 - Listing Screen
 - Search option
 
+# Techstacks I used
+
+used BLOC as statemanagement. it's eeasy to implement compare to other statemanagements
+other packaged i used
+
+- injectable - Dependency injection in Flutter is a technique in which one object supplies the dependencies of another object
+- freezed - Freezed is a code-generation package 
+- getit - This is a simple Service Locator for Dart and Flutter
+- json_serializable - having an external library generate the encoding boilerplate
+- dio - it provides a powerful HTTP client for Dart and Flutter
+- dartz - Functional programming in Dart
+
 
 
 ## What's I Done
