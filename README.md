@@ -29,11 +29,11 @@ implemented search query
 
 ## Bugs and Problems
 
-on Search Option the data i fetching randomly not as per the query, trying to fix that. 
+on Search Option the data is fetching randomly, not as per the query, trying to fix that. 
 
 Hero widget is not working too. 
 
-### trying to fix those bugs , but due to time limit pushing this code to repo. will  find and fix those bug and will push the code. 
+#### trying to fix those bugs , but due to time limit pushing this code to repo. will  find and fix those bug and will push the code. 
 
 ## Run The Project
 
