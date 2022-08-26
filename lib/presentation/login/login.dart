@@ -33,6 +33,7 @@ class LoginPage extends StatelessWidget {
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
               ),
               onPressed: () {
+                //  if the username and password isn't same user can't login in
                 loginCheck(
                   usernameController.text,
                   passwordController.text,

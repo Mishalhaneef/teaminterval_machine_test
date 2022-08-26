@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:teaminterval_test/application/login/login_bloc.dart';
+import 'package:teaminterval_test/application/search/search_bloc.dart';
 import 'package:teaminterval_test/core/di/injectable.dart';
 import 'package:teaminterval_test/presentation/login/login.dart';
 
 import 'application/product/product_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'infrastructures/homepage/homepage_implementation.dart';
 // todo :
 // Create a user login screen with inputs user name and password.
 // On clicking login button if username and password are same go to the Home Screen else show error
@@ -23,8 +24,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<ProductBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (ctx) => getIt<ProductBloc>()),
+        BlocProvider(create: (ctx) => getIt<SearchBloc>()),
+        BlocProvider(create: (ctx) => LoginBloc()),
+      ],
       // providers: [
       //   BlocProvider(create: (ctx) => getIt<ProductBloc>()),
       // ],

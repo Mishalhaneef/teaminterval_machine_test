@@ -15,18 +15,22 @@ class ProductImplementation implements ProductService {
     try {
       final response = await Dio(BaseOptions()).get(ApiEndpoints.product);
 
+      /// checking status code
       if (response.statusCode == 200 || response.statusCode == 201) {
-
-      final productList =  ( response.data['drinks'] as List).map((e) {
-        return Product.fromJson(e);
-       }).toList();
+        // fetching drniks list from api and converting it to map and
+        // making this to a list and return as Either Right (succes) option
+        final productList = (response.data['drinks'] as List).map((e) {
+          return Product.fromJson(e);
+        }).toList();
 
         return Right(productList);
       } else {
+        // server side fails
         return const Left(CommonFailures.serverFailures());
       }
     } catch (e) {
       log('$e ss');
+      // user side failures
       return const Left(CommonFailures.clientFailures());
     }
   }

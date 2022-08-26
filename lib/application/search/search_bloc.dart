@@ -29,8 +29,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         const SearchState(
           searchResultData: [],
           waitinglist: [],
-          isLoading: true,
-          isError: false,
         ),
       );
       // get trending
@@ -42,16 +40,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           return const SearchState(
             searchResultData: [],
             waitinglist: [],
-            isLoading: false,
-            isError: true,
           );
         },
         (List<Product> list) {
           return SearchState(
             searchResultData: [],
             waitinglist: list,
-            isLoading: false,
-            isError: false,
           );
         },
       );
@@ -64,13 +58,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       // call search movie API
       // show the api result to UI
       log('Searching for ${event.productQuery}');
-      
+
       emit(
         const SearchState(
           searchResultData: [],
           waitinglist: [],
-          isLoading: true,
-          isError: false,
         ),
       );
       final _result =
@@ -80,16 +72,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           return const SearchState(
             searchResultData: [],
             waitinglist: [],
-            isLoading: false,
-            isError: true,
           );
         },
         (SearchResponse response) {
           return SearchState(
             searchResultData: response.results,
             waitinglist: [],
-            isLoading: false,
-            isError: false,
           );
         },
       );

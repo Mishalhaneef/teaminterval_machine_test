@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teaminterval_test/application/login/login_bloc.dart';
 import 'package:teaminterval_test/core/constants.dart';
 
-class TextFieldWidget extends StatefulWidget {
+class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({
     Key? key,
     required this.hint,
@@ -13,12 +15,7 @@ class TextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
   final bool password;
 
-  @override
-  State<TextFieldWidget> createState() => _TextFieldWidgetState();
-}
-
-class _TextFieldWidgetState extends State<TextFieldWidget> {
-  bool obscureText = false;
+  final bool obscureText = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,30 +32,38 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         child: Padding(
           padding:
               const EdgeInsets.only(right: 10, left: 30, top: 0, bottom: 3),
-          child: TextField(
-            obscureText: obscureText,
-            controller: widget.controller,
-            decoration: InputDecoration(
-              hintText: widget.hint,
-              hintStyle: const TextStyle(color: Colors.grey),
-              suffixIcon: widget.password == true
-                  ? IconButton(
-                      icon: const Icon(
-                        Icons.remove_red_eye,
-                      ),
-                      onPressed: () {
-                        obscureText == false ?
-                        setState(() {
-                          obscureText = true;
-                        })
-                        : setState(() {
-                          obscureText = false;
-                        });
-                      },
-                    )
-                  : null,
-              border: InputBorder.none,
-            ),
+          child: BlocBuilder<LoginBloc, LoginState>(
+            builder: (context, state) {
+              return TextField(
+                obscureText: state.obscureText,
+                controller: controller,
+                decoration: InputDecoration(
+                  hintText: hint,
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  suffixIcon: password == true
+                      ? BlocBuilder<LoginBloc, LoginState>(
+                          builder: (context, state) {
+                            return IconButton(
+                              icon: const Icon(
+                                Icons.remove_red_eye,
+                              ),
+                              onPressed: () {
+                                state.obscureText == true
+                                    ? context
+                                        .read<LoginBloc>()
+                                        .add(const ShowPassword())
+                                    : context
+                                        .read<LoginBloc>()
+                                        .add(const HidePassword());
+                              },
+                            );
+                          },
+                        )
+                      : null,
+                  border: InputBorder.none,
+                ),
+              );
+            },
           ),
         ),
       ),

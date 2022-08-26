@@ -19,7 +19,9 @@ class SearchImplementation implements SearchService {
         queryParameters: {'query': drinkQuery},
       );
       log(response.data.toString());
+      // status code checking
       if (response.statusCode == 200 || response.statusCode == 201) {
+        // fetching search result from json and converting to dart
         final searchResult = SearchResponse.fromJson(response.data);
         // log('$searchResult');
         return Right(searchResult);

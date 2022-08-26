@@ -11,13 +11,25 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<SearchBloc>(context).add(const Initialize());
+    });
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
         child: Column(
-          children: const [
-            SizedBox(height: 50),
-            SearchWidget(),
+          children: [
+            const SizedBox(height: 50),
+            SearchWidget(
+              onChanged: (value) {
+                if (value.isEmpty) {
+                  return;
+                }
+                BlocProvider.of<SearchBloc>(context).add(
+                  SearchProduct(productQuery: value),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -39,60 +51,41 @@ class SearchScreen extends StatelessWidget {
                     mainAxisSpacing: 10.0,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BlocBuilder<SearchBloc, SearchState>(
-                          builder: (context, state) {
-                            return Container(
-                              height: 200,
-                              width: 300,
-                              decoration: BoxDecoration(
-                                  //       boxShadow: const [
-                                  //   BoxShadow(
-                                  //     color: Color.fromARGB(255, 122, 122, 122),
-                                  //     offset: Offset(
-                                  //       0,
-                                  //       0,
-                                  //     ),
-                                  //     blurRadius: 5.0,
-                                  //     spreadRadius: 0,
-                                  //   ),
-                                  // ],
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(state
-                                          .searchResultData[index].image!)),
-                                  borderRadius: BorderRadius.circular(20)),
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 9),
-                        BlocBuilder<SearchBloc, SearchState>(
-                          builder: (context, state) {
-                            return Text(
-                              state.searchResultData[index].title!,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                    final productResult = state.searchResultData[index];
+                    return productResult.image == null
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 200,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(state
+                                            .searchResultData[index].image!)),
+                                    borderRadius: BorderRadius.circular(20)),
                               ),
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 10),
-                        BlocBuilder<SearchBloc, SearchState>(
-                          builder: (context, state) {
-                            return const Text(
-                              'search results',
-                              style: TextStyle(
+                              const SizedBox(height: 9),
+                              Text(
+                                state.searchResultData[index].title!,
+                                style: const TextStyle(
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.grey),
-                            );
-                          },
-                        )
-                      ],
-                    );
-                    ;
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'search results',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey),
+                              ),
+                            ],
+                          );
                   },
                 );
               },

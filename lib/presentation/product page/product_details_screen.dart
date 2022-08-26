@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:teaminterval_test/core/constants.dart';
 
 class ProductDetail extends StatelessWidget {
@@ -11,9 +9,9 @@ class ProductDetail extends StatelessWidget {
     required this.instructions,
   }) : super(key: key);
 
-  final image;
-  final name;
-  final instructions;
+  final dynamic image;
+  final dynamic name;
+  final dynamic instructions;
 
   @override
   Widget build(BuildContext context) {
@@ -28,20 +26,20 @@ class ProductDetail extends StatelessWidget {
             tag: 'dash',
             child: Image(image: NetworkImage(image)),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.all(28.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Instructions',
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(instructions),
               ],
             ),
