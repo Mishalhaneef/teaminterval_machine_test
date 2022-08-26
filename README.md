@@ -45,7 +45,7 @@ implemented search query
 
 on Search Option the data is fetching randomly, not as per the query, trying to fix that. 
 
-Hero widget is not working too. 
+Hero widget have a little issue, working on that.
 
 #### trying to fix those bugs , but due to time limit pushing this code to repo. will  find and fix those bug and will push the code. 
 
