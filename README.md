@@ -2,6 +2,8 @@
 
  this is a flutter project for [teteaminterval.com](https://www.teaminterval.in/)'s machine test
 
+ try app : [machientest_app.apk](https://drive.google.com/file/d/1f6PURbgWMqz9mNINcykdAcyBuyxIYqBP/view?usp=sharing)
+
 ## Task 
 - Login Screen
 - Home Screen
