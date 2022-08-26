@@ -40,10 +40,7 @@ class LoginPage extends StatelessWidget {
                   context,
                 );
               },
-              child: const Text(
-                'Login',
-                style: TextStyle(color: Colors.black),
-              ),
+              child: const Text('Login', style: TextStyle(color: Colors.black)),
             )
           ],
         ),

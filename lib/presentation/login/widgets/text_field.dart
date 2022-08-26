@@ -35,28 +35,25 @@ class TextFieldWidget extends StatelessWidget {
           child: BlocBuilder<LoginBloc, LoginState>(
             builder: (context, state) {
               return TextField(
-                obscureText: state.obscureText,
+                obscureText: password == true ? state.obscureText : false,
                 controller: controller,
                 decoration: InputDecoration(
                   hintText: hint,
                   hintStyle: const TextStyle(color: Colors.grey),
                   suffixIcon: password == true
-                      ? BlocBuilder<LoginBloc, LoginState>(
-                          builder: (context, state) {
-                            return IconButton(
-                              icon: const Icon(
-                                Icons.remove_red_eye,
-                              ),
-                              onPressed: () {
-                                state.obscureText == true
-                                    ? context
-                                        .read<LoginBloc>()
-                                        .add(const ShowPassword())
-                                    : context
-                                        .read<LoginBloc>()
-                                        .add(const HidePassword());
-                              },
-                            );
+                      ? IconButton(
+                          icon: const Icon(
+                            Icons.remove_red_eye,
+                          ),
+                          onPressed: () {
+                              state.obscureText == true
+                                  ? context
+                                      .read<LoginBloc>()
+                                      .add(const ShowPassword())
+                                  : context
+                                      .read<LoginBloc>()
+                                      .add(const HidePassword());
+                            
                           },
                         )
                       : null,
